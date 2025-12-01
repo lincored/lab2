@@ -4,11 +4,14 @@ on:
   push:
     branches: [ main, master ]
     tags: [ 'v*' ]
-  workflow_dispatch:  # Позволяет запускать вручную
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     
     steps:
     - name: Checkout code
@@ -31,7 +34,7 @@ jobs:
         images: ghcr.io/${{ github.repository }}
         tags: |
           type=ref,event=tag
-          type=sha,prefix={{abbrev(7)}}
+          type=sha,prefix=
           
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
