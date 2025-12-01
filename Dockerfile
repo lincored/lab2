@@ -1,8 +1,14 @@
-FROM alpine:latest
+FROM python:3.9-alpine
 
-# Добавьте ваше приложение
-COPY . /app
+# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Пример команды запуска
-CMD ["echo", "Hello from Docker!"]
+# Копируем файлы приложения
+COPY index.html .
+COPY app.py .
+
+# Открываем порт
+EXPOSE 8080
+
+# Запускаем веб-сервер
+CMD ["python", "app.py"]
