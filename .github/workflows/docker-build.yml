@@ -13,12 +13,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Get commit hash
-      id: commit
-      run:  |
-        echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-        echo "sha_full=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
-      
     - name: Set up Buildx
       uses: docker/setup-buildx-action@v3
       
@@ -38,3 +32,5 @@ jobs:
         tags: |
           ghcr.io/${{ github.repository }}:latest
           ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+          ghcr.io/${{ github.repository }}:${{ github.sha }}
+          ghcr.io/${{ github.repository }}:${{ github.sha }}
