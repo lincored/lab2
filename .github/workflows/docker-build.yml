@@ -13,7 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Get short SHA
+    - name: Get short
       id: sha
       run: echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       
