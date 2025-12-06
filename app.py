@@ -5,9 +5,10 @@ import os
 
 PORT = 8080
 
-class Handler(http.server.SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=os.path.dirname(__file__), **kwargs)
+# Переходим в рабочую директорию
+os.chdir('/app')
+
+Handler = http.server.SimpleHTTPRequestHandler
 
 print(f"Starting web server on port {PORT}")
 print(f"Server URL: http://localhost:{PORT}")
